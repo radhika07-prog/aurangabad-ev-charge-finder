@@ -28,7 +28,7 @@ body {
 }
 
 .navbar nav a.active {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .hero {
