@@ -24,6 +24,28 @@ $user = $_SESSION['user'];
         }
         h2 { color: #28a745; }
         p { font-size: 16px; line-height: 1.6; }
+        .pro{
+            display: flex;
+            height:50px;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .same{
+            height: 50px;
+            width: 100px;
+            border-radius: 10px;
+            background-color: #28a745;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .same a{
+            font-size: 20px;
+            text-decoration: none;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -33,7 +55,11 @@ $user = $_SESSION['user'];
         <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?></p>
         <p><strong>Phone:</strong> <?= htmlspecialchars($user['phone']) ?></p>
         <p><strong>Gender:</strong> <?= htmlspecialchars($user['gender']) ?></p>
-        <a href="logout.php">Logout</a>
+        <div class="pro">
+            <div class="same"><a href="logout.php">Logout</a></div>
+            <div class="same"><a href="index.html">Home</div>
+        </div>
+        
     </div>
 </body>
 </html>
