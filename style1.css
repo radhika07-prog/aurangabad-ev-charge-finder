@@ -1,35 +1,46 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   background: #fff;
   color: #222;
 }
 
-.navbar {
-  background: #0aaf57;
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  align-items: center;
-  color: white;
-}
+header {
+            
+            background-color: #1ca24c;
+            padding: 1rem 2rem;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.navbar .logo {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
+        .logo {
+            font-weight: 600;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
 
-.navbar nav a {
-  margin-left: 1rem;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
+        .logo i {
+            margin-right: 8px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
-.navbar nav a.active {
-  text-decoration: none;
-}
+        nav a {
+            color: #fff;
+            margin-left: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
 
 .hero {
   background: linear-gradient(to right, #00c853, #2979ff);
