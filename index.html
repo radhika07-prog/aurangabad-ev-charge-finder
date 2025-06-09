@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EV Charge Finder</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><i class="fas fa-charging-station"></i> EV Charge Finder</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Find EV Charging Stations</h1>
+    <p>Discover nearby charging points in Chh Sambhaji Nagar (Aurangabad)</p>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by location or station name..."/>
+      <button onclick="searchStations()"><i class="fas fa-search"></i></button>
+    </div>
+  </section>
+
+  <section class="stations">
+    <h2>Available Charging Stations</h2>
+    <div class="station-cards" id="stationList"></div>
+  </section>
+
+  <div id="popup" class="popup">
+    <p id="popupMessage"></p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+  <footer>
+    <p>EV Charge Finder | Making electric vehicle charging accessible in Chh Sambhaji Nagar</p>
+    <p><a href="about.html">About Us</a> | <a href="login.html">Login</a></p>
+  </footer>
+
+  <script>
+    const stationsData = [
+      { name: "City Mall Charging Hub", location: "City Mall, Jalna Road, Aurangabad", type: "Fast Charging", power: "500W", price: "₹8/kWh", rating: "⭐ 4.5", amenities: "Restaurant, Parking" },
+      { name: "GreenVolt Plaza", location: "CIDCO N-1 Area, Aurangabad", type: "Standard Charging", power: "350W", price: "₹7/kWh", rating: "⭐ 4.2", amenities: "Shops, Restroom" },
+      { name: "Aurangabad EV Point", location: "Station Road, Aurangabad", type: "Fast Charging", power: "600W", price: "₹9/kWh", rating: "⭐ 4.7", amenities: "Café, Parking" },
+      { name: "MegaCharge Center", location: "Prozone Mall, Aurangabad", type: "Ultra Fast Charging", power: "800W", price: "₹10/kWh", rating: "⭐ 4.9", amenities: "Food Court, Lounge" },
+      { name: "EcoWatt Station", location: "Shendra MIDC, Aurangabad", type: "Standard Charging", power: "400W", price: "₹6.5/kWh", rating: "⭐ 4.0", amenities: "Washroom, Rest Area" },
+      { name: "QuickCharge Bay", location: "Kanchanwadi Bypass, Aurangabad", type: "Fast Charging", power: "550W", price: "₹8.5/kWh", rating: "⭐ 4.3", amenities: "Shops, Rest Area" },
+      { name: "Spark Plug Port", location: "Aurangpura Main Road, Aurangabad", type: "Standard Charging", power: "300W", price: "₹6/kWh", rating: "⭐ 3.9", amenities: "Restroom, Snacks" },
+      { name: "Volt Avenue", location: "Beed Bypass Road, Aurangabad", type: "Ultra Fast Charging", power: "900W", price: "₹11/kWh", rating: "⭐ 5.0", amenities: "Café, Parking, Lounge" }
+    ];
+
+    function generateCards() {
+      const stationList = document.getElementById('stationList');
+      stationList.innerHTML = '';
+      stationsData.forEach(station => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const encodedLocation = encodeURIComponent(station.location);
+        const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedLocation}`;
+
+        card.innerHTML = `
+          <h3>${station.name}</h3>
+          <p><strong>Location:</strong> ${station.location}</p>
+          <p><strong>Type:</strong> ${station.type}</p>
+          <p><strong>Power:</strong> ${station.power}</p>
+          <p><strong>Price:</strong> ${station.price}</p>
+          <p><strong>Rating:</strong> ${station.rating}</p>
+          <p><strong>Amenities:</strong> ${station.amenities}</p>
+          <div class="btns">
+            <button class="navigate" onclick="window.open('${mapsUrl}', '_blank')">Get Directions</button>
+          </div>
+        `;
+        stationList.appendChild(card);
+      });
+    }
+
+    function searchStations() {
+      let input = document.getElementById('searchInput').value.toLowerCase();
+      let stations = document.querySelectorAll('.station-cards .card');
+
+      stations.forEach(card => {
+        let content = card.textContent.toLowerCase();
+        card.style.display = content.includes(input) ? "block" : "none";
+      });
+    }
+
+    function showPopup(message) {
+      document.getElementById('popupMessage').innerText = message;
+      document.getElementById('popup').classList.add('show');
+    }
+
+    function closePopup() {
+      document.getElementById('popup').classList.remove('show');
+    }
+
+    window.onload = generateCards;
+  </script>
+</body>
+</html>
